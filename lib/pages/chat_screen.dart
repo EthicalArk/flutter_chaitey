@@ -19,7 +19,7 @@ class _ChatScreenState extends State<ChatScreen> {
               ),
               ListTile(
                 onTap: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => ChatDetails()),
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => ChatDetails(dummyData[i].name)),
                   );
                 },
                 leading: CircleAvatar(

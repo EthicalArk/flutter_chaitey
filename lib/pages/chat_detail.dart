@@ -1,12 +1,18 @@
 import 'package:flutter/material.dart';
 import 'chat_message.dart';
+import '../models/chat_model.dart';
 
 class ChatDetails extends StatefulWidget {
+ final String name ;
+  ChatDetails(this.name) ;
+
   @override
-  State createState() => ChatDetailsState();
+  State createState() => _ChatDetailsState(name);
 }
 
-class ChatDetailsState extends State<ChatDetails> {
+class _ChatDetailsState extends State<ChatDetails> {
+   String name ;
+  _ChatDetailsState(this.name);
   final TextEditingController _textController = TextEditingController();
 
   final List<ChatMessage> _messages = <ChatMessage>[];
@@ -57,7 +63,10 @@ class ChatDetailsState extends State<ChatDetails> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Messages'),
+        title: Text(
+          name,
+          style: TextStyle(fontWeight: FontWeight.bold), ),
+
         elevation: 0.7,
       ),
       body: SafeArea(
@@ -65,7 +74,7 @@ class ChatDetailsState extends State<ChatDetails> {
           children: <Widget>[
             Flexible(
               child: ListView.builder(
-                padding: const EdgeInsets.all(8),
+                padding:EdgeInsets.all(8),
                 reverse: true,
                 itemBuilder: (_, int index) => (_messages[index]),
                 itemCount: _messages.length,
